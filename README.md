@@ -1,10 +1,9 @@
 Search in XML - Python
 ======================
 
-From Sphere
-1484 Search in XML
-Problem code: PT07H
-http://www.spoj.com/problems/PT07H/
+From Sphere: 1484 Search in XML  
+Problem code: PT07H  
+http://www.spoj.com/problems/PT07H/  
 
 We are given a valid XML document and a querying pattern of XML,
 and are expected to find all occurrences of the pattern in the text of XML documents.
@@ -34,7 +33,7 @@ printed in increasing order.
 Example
 -------
 ####Input:
-<THU>
+`<THU>
 	<Team>
 		<ACRush></ACRush>
 		<Jelly></Jelly>
@@ -48,7 +47,7 @@ Example
 		</Team>
 	</JiaJia>
 </THU>
-<Team><Cooly></Cooly></Team>
+<Team><Cooly></Cooly></Team>`
 
 ####Output:
 2
