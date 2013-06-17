@@ -18,7 +18,7 @@ There are two parts in the input file:
 - A valid XML document as querying patter with exactly one root element
 
 We may assume:
-- Ignore all whitespace (consider only a-z, A-Z, '/', '<', and '>')
+- Ignore all whitespace (consider only `a-z`, `A-Z`, `/`, `<`, and `>`)
 - XML documents are strictly rooted tree
 - Input file is less than 100kb
 
@@ -48,6 +48,6 @@ Example
     <Team><Cooly></Cooly></Team>
 
 ####Output:
-2  
-2  
-7  
+    2  
+    2  
+    7  
