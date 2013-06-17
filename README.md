@@ -13,7 +13,6 @@ starting with 1.
 
 Input
 -----
-
 There are two parts in the input file:
 - A valid XML document with exactly one root element
 - A valid XML document as querying patter with exactly one root element
@@ -25,7 +24,6 @@ We may assume:
 
 Output
 ------
-
 First line consists of an integer n that denotes the number of occurrences.
 Each line after contains the id number of the element where the pattern occurs,
 printed in increasing order.
@@ -33,21 +31,21 @@ printed in increasing order.
 Example
 -------
 ####Input:
-`<THU>
-	<Team>
-		<ACRush></ACRush>
-		<Jelly></Jelly>
-		<Cooly></Cooly>
-	</Team>
-	<JiaJia>
-		<Team>
-			<Ahyangyi></Ahyangyi>
-			<Dragon></Dragon>
-			<Cooly><Amber></Amber></Cooly>
-		</Team>
-	</JiaJia>
-</THU>
-<Team><Cooly></Cooly></Team>`
+    <THU>  
+    	<Team>  
+    		<ACRush></ACRush>  
+    		<Jelly></Jelly>  
+    		<Cooly></Cooly>  
+    	</Team>  
+    	<JiaJia>  
+    		<Team>  
+    			<Ahyangyi></Ahyangyi>  
+    			<Dragon></Dragon>  
+    			<Cooly><Amber></Amber></Cooly>  
+    		</Team>  
+    	</JiaJia>  
+    </THU>  
+    <Team><Cooly></Cooly></Team>
 
 ####Output:
 2
