@@ -48,6 +48,6 @@ Example
     <Team><Cooly></Cooly></Team>
 
 ####Output:
-2
-2
-7
+2  
+2  
+7  
