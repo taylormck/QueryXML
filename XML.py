@@ -38,7 +38,7 @@ def xmlRead (istream, strings):
     """
     return False  # TBD, this is a dummy return
 
-def xmlPrint (solution):
+def xmlPrint (solution, ostream):
     """
         Prints out the elements of a tuple without the formatting or extra symbols
         
