@@ -2,7 +2,7 @@
 """
     Search in XML
     
-    @author: Taylor McKinney, Eddie
+    @author: Taylor McKinney, Eduardo Saenz
 """
 import xml.etree.ElementTree as et
 
