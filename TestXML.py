@@ -12,6 +12,10 @@ import StringIO
 import unittest
 from XML import XMLSearch, xmlPrint, xmlRead, xmlSolve, et
 
+xml1 = "<THU>\n<Team>\n<ACRush></ACRush>\n<Jelly></Jelly>\n<Cooly></Cooly>\n</Team>\n<JiaJia>\n<Team>\n<Ahyangyi></Ahyangyi>\n<Dragon></Dragon>\n<Cooly><Amber></Amber></Cooly>\n</Team>\n</JiaJia>\n</THU>\n<Team><Cooly></Cooly></Team>"
+xml_whitespace = "<THU>\n <Team>  \n\n <Cooly>\t</Cooly>\n </Team>\n </THU>\n<Team><Cooly>\t </Cooly> </Team>"
+xml_text = "<THU>\n<Team>\n<Cooly>test text</Cooly>\n</Team>\n</THU>\n<Team><Cooly>more test text</Cooly></Team>"
+
 class TestXML (unittest.TestCase) :
 
     # -------
@@ -21,7 +25,7 @@ class TestXML (unittest.TestCase) :
     # may have to remove \n from the assert statements
 
     def test_xmlRead (self) :
-        r = StringIO.StringIO("<THU>\n<Team>\n<ACRush></ACRush>\n<Jelly></Jelly>\n<Cooly></Cooly>\n</Team>\n<JiaJia>\n<Team>\n<Ahyangyi></Ahyangyi>\n<Dragon></Dragon>\n<Cooly><Amber></Amber></Cooly>\n</Team>\n</JiaJia>\n</THU>\n<Team><Cooly></Cooly></Team>")
+        r = StringIO.StringIO(xml1)
         a = ["", ""]
         b = xmlRead(r, a)
         self.assert_(b == True)
@@ -38,7 +42,7 @@ class TestXML (unittest.TestCase) :
         self.assert_(a[1] == "")
 
     def test_xmlRead_whitespace (self) :
-        r = StringIO.StringIO("<THU>\n <Team>  \n\n <Cooly>\t</Cooly>\n </Team>\n </THU>\n<Team><Cooly>\t </Cooly> </Team>")
+        r = StringIO.StringIO(xml_whitespace)
         a = ["", ""]
         b = xmlRead(r, a)
         self.assert_(b == True)
@@ -47,7 +51,7 @@ class TestXML (unittest.TestCase) :
         self.assert_(a[1] == "<Team><Cooly></Cooly></Team>")
 
     def test_xmlRead_text (self) :
-        r = StringIO.StringIO("<THU>\n<Team>\n<Cooly>test text</Cooly>\n</Team>\n</THU>\n<Team><Cooly>more test text</Cooly></Team>")
+        r = StringIO.StringIO(xml_text)
         a = ["", ""]
         b = xmlRead(r, a)
         self.assert_(b == True)
@@ -89,7 +93,21 @@ class TestXML (unittest.TestCase) :
     # --------
 
     def test_xmlSolve_1 (self) :
-        self.assert_(False)
+        r = StringIO.StringIO(xml1)
+        w = StringIO.StringIO()
+        xmlSolve(r, w)
+        self.assert_(w.getvalue() == "2\n7\n7\n")
+
+    def test_xmlSolve_whitespace (self) :
+        r = StringIO.StringIO(xml_whitespace)
+        w = StringIO.StringIO()
+        xmlSolve(r, w)
+        self.assert_(w.getvalue() == "1\n2\n")
+
+    def test_xmlSolve_text (self) :
+        r = StringIO.StringIO(xml_text)
+        w = StringIO.StringIO()
+        self.assert_(w.getvalue() == "1\n2\n")
 
 class TestXMLSearch (unittest.TestCase) :
     # Remember, you can test a tree using et.dump(sourceTree.getroot())
