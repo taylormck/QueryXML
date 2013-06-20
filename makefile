@@ -1,4 +1,4 @@
-ll:
+all:
 	make XML.zip
 
 clean:
