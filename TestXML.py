@@ -105,7 +105,7 @@ class TestXML (unittest.TestCase) :
     def test_xmlSolve_text (self) :
         r = StringIO.StringIO(xml_text)
         w = StringIO.StringIO()
-        print w.getvalue()
+        xmlSolve(r, w)
         self.assert_(w.getvalue() == "1\n2\n")
 
     # --------
