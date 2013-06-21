@@ -27,7 +27,7 @@ def xmlQueryToRegex(queryRoot):
     """
         Takes in a query root and returns the regex to search
     """
-    return None
+    return ""
 
 def xmlRead (istream):
     """

@@ -103,6 +103,33 @@ class TestXML (unittest.TestCase) :
     def test_xmlEval_1 (self) :
     	self.assert_(False)
 
+    # ----------------
+    # xmlQueryToRegex
+    # ----------------
+    def test_xmlQueryToRegex_1 (self) :
+        query = "<T></T>"
+        queryroot = et.fromstring(query)
+        result = xmlQueryToRegex(queryroot)
+        self.assert_(result == ".//T")
+
+    def test_xmlQueryToRegex_2 (self) :
+        query = "<T> <C> <D> </D> </C> </T>"
+        queryroot = et.fromstring(query)
+        result = xmlQueryToRegex(queryroot)
+        self.assert_(result == ".//T/C/D/../..")
+
+    def test_xmlQueryToRegex_3 (self) :
+        query = "<T> <C> </C> <D> </D> </T>"
+        queryroot = et.fromstring(query)
+        result = xmlQueryToRegex(queryroot)
+        self.assert_(result == ".//T/C/../D/..")
+
+    def test_xmlQueryToRegex_4 (self) :
+        query = "<T> <C> <D> </D> </C> <J> </J> </T>"
+        queryroot = et.fromstring(query)
+        result = xmlQueryToRegex(queryroot)
+        self.assert_(result == ".//T/C/D/../../J/..")
+
 # ----
 # main
 # ----
