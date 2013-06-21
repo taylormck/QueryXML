@@ -4,47 +4,35 @@
     
     @author: Taylor McKinney, Eduardo Saenz
 """
+
 import xml.etree.ElementTree as et
 
-
-class XMLSearch:
-    """A collection of data for a single search query and XML file"""
-
-    def __init__ (self, sourceXMLString, queryXMLString):
-        """
-            Reads in the XML source and query as strings and parses them into trees
-            
-            @param sourceXMLString: The XML source as a string
-            @param queryXMLString: The XML query as a string
-        """
-        self.sourceTree = et.fromstring(sourceXMLString)
-        self.queryTree = et.fromstring(queryXMLString)
-
-    def eval(self):
-        """
-            Searches for the query in the XML source
-            Returns the number of matches and integer enumeration of each occurrence
-            
-            @return: (n, k1, ... kn) where n is the number of matches and ki is the ith match
-        """
-
-        # for (c, n) in enumerate(sourceTree.iter(), 1):
-        #     this will give you each node with their correct number
-        #     I suggest using n.set( ... ) to write the counter to each node for later use
-        #     or we can do all the work here
-        return (0,)  # TBD, this is a dummy return
-
-    # I'm considering adding a method to get the string version of the query, as in
-    # foo(<Team><Cooly></Cooly></Team>) == "Team/Cooly"
-
-def xmlRead (istream, strings):
+def xmlEval(sourceRoot, queryRoot):
     """
-        Reads a test case from the input stream
+        Searches for the query in the XML source
+        Returns the number of matches and integer enumeration of each occurrence
         
-        @param strings: An array of string objects with at least 2 elements
-        @return True if successful, False otherwise
+        @return: (n, k1, ... kn) where n is the number of matches and ki is the ith match
     """
-    return False  # TBD, this is a dummy return
+
+    # for (c, n) in enumerate(sourceTree.iter(), 1):
+    #     this will give you each node with their correct number
+    #     I suggest using n.set( ... ) to write the counter to each node for later use
+    #     or we can do all the work here
+    return (0,)  # TBD, this is a dummy return
+
+# I'm considering adding a method to get the string version of the query, as in
+# foo(<Team><Cooly></Cooly></Team>) == "Team/Cooly"
+def xmlQueryToRegex(queryRoot):
+    """
+        Takes in a query root and returns the regex to search
+    """
+    return None
+
+def xmlRead (istream):
+    """
+    """
+    return "<XML>" + istream.read() + "</XML>"
 
 def xmlPrint (solution, ostream):
     """
@@ -52,7 +40,8 @@ def xmlPrint (solution, ostream):
         
         @param solution: A tuple
     """
-    pass
+    for n in solution:
+        print >> ostream, n
 
 def xmlSolve (istream, ostream):
     """

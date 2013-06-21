@@ -10,7 +10,7 @@ To test the program:
 # --- imports ---
 import StringIO
 import unittest
-from XML import XMLSearch, xmlPrint, xmlRead, xmlSolve, et
+from XML import xmlEval, xmlQueryToRegex, xmlPrint, xmlRead, xmlSolve, et
 
 xml1 = "<THU>\n<Team>\n<ACRush></ACRush>\n<Jelly></Jelly>\n<Cooly></Cooly>\n</Team>\n<JiaJia>\n<Team>\n<Ahyangyi></Ahyangyi>\n<Dragon></Dragon>\n<Cooly><Amber></Amber></Cooly>\n</Team>\n</JiaJia>\n</THU>\n<Team><Cooly></Cooly></Team>"
 xml_whitespace = "<THU>\n <Team>  \n\n <Cooly>\t</Cooly>\n </Team>\n </THU>\n<Team><Cooly>\t </Cooly> </Team>"
@@ -26,38 +26,24 @@ class TestXML (unittest.TestCase) :
 
     def test_xmlRead (self) :
         r = StringIO.StringIO(xml1)
-        a = ["", ""]
-        b = xmlRead(r, a)
-        self.assert_(b == True)
-        self.assert_(a[0] == "<THU>\n<Team>\n<ACRush></ACRush>\n<Jelly></Jelly>\n<Cooly></Cooly>\n</Team>\n<JiaJia>\n<Team>\n<Ahyangyi></Ahyangyi>\n<Dragon></Dragon>\n<Cooly><Amber></Amber></Cooly>\n</Team>\n</JiaJia>\n</THU>")
-        self.assert_(a[1] == "<Team><Cooly></Cooly></Team>")
+        b = xmlRead(r)
+        self.assert_(b == "<XML>" + xml1 + "</XML>")
 
     def test_xmlRead_empty (self) :
         r = StringIO.StringIO("")
-        a = ["", ""]
-        b = xmlRead(r, a)
+        b = xmlRead(r)
         # the below may be bad because we allow blank lines in input
-        self.assert_(b == False)
-        self.assert_(a[0] == "")
-        self.assert_(a[1] == "")
+        self.assert_(b == "<XML></XML>")
 
     def test_xmlRead_whitespace (self) :
         r = StringIO.StringIO(xml_whitespace)
-        a = ["", ""]
-        b = xmlRead(r, a)
-        self.assert_(b == True)
-        # xml preserves whitespace, do we want to preserve it? double check
-        self.assert_(a[0] == "<THU>\n<Team>\n<Cooly></Cooly>\n</Team>\n</THU>")
-        self.assert_(a[1] == "<Team><Cooly></Cooly></Team>")
+        b = xmlRead(r)
+        self.assert_(b == "<XML>" + xml_whitespace + "</XML>")
 
     def test_xmlRead_text (self) :
         r = StringIO.StringIO(xml_text)
-        a = ["", ""]
-        b = xmlRead(r, a)
-        self.assert_(b == True)
-        # xml preserves whitespace, so it might also preserve the text? double check
-        self.assert_(a[0] == "<THU>\n<Team>\n<Cooly></Cooly>\n</Team>\n</THU>")
-        self.assert_(a[1] == "<Team><Cooly></Cooly></Team>")
+        b = xmlRead(r)
+        self.assert_(b == "<XML>" + xml_text + "</XML>")
 
 
     # --------
@@ -109,22 +95,7 @@ class TestXML (unittest.TestCase) :
         w = StringIO.StringIO()
         self.assert_(w.getvalue() == "1\n2\n")
 
-class TestXMLSearch (unittest.TestCase) :
-    # Remember, you can test a tree using et.dump(sourceTree.getroot())
-    # and comparing it to a string
-
-    # --------
-    # __init__
-    # --------
-
-    def test_init (self) :
-    	self.assert_(False)
-
-    # ----
-    # eval
-    # ----
-
-    def test_eval_1 (self) :
+    def test_xmlEval_1 (self) :
     	self.assert_(False)
 
 # ----
