@@ -12,9 +12,14 @@ import StringIO
 import unittest
 from XML import xmlEval, xmlQueryToRegex, xmlPrint, xmlRead, xmlSolve, et
 
-xml1 = "<THU>\n<Team>\n<ACRush></ACRush>\n<Jelly></Jelly>\n<Cooly></Cooly>\n</Team>\n<JiaJia>\n<Team>\n<Ahyangyi></Ahyangyi>\n<Dragon></Dragon>\n<Cooly><Amber></Amber></Cooly>\n</Team>\n</JiaJia>\n</THU>\n<Team><Cooly></Cooly></Team>"
-xml_whitespace = "<THU>\n <Team>  \n\n <Cooly>\t</Cooly>\n </Team>\n </THU>\n<Team><Cooly>\t </Cooly> </Team>"
-xml_text = "<THU>\n<Team>\n<Cooly>test text</Cooly>\n</Team>\n</THU>\n<Team><Cooly>more test text</Cooly></Team>"
+xml1 = "<THU>\n<Team>\n<ACRush></ACRush>\n<Jelly></Jelly>\n<Cooly></Cooly>\n"\
+        + "</Team>\n<JiaJia>\n<Team>\n<Ahyangyi></Ahyangyi>\n<Dragon>"\
+        + "</Dragon>\n<Cooly><Amber></Amber></Cooly>\n</Team>\n</JiaJia>\n"\
+        + "</THU>\n<Team><Cooly></Cooly></Team>"
+xml_whitespace = "<THU>\n <Team>  \n\n <Cooly>\t</Cooly>\n </Team>\n </THU>"\
+        + "\n<Team><Cooly>\t </Cooly> </Team>"
+xml_text = "<THU>\n<Team>\n<Cooly>test text</Cooly>\n</Team>\n</THU>\n<Team>"\
+        + "<Cooly>more test text</Cooly></Team>"
 
 class TestXML (unittest.TestCase) :
 
