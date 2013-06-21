@@ -14,12 +14,20 @@ def xmlEval(sourceRoot, queryRoot):
         
         @return: (n, k1, ... kn) where n is the number of matches and ki is the ith match
     """
-
     # for (c, n) in enumerate(sourceTree.iter(), 1):
     #     this will give you each node with their correct number
     #     I suggest using n.set( ... ) to write the counter to each node for later use
     #     or we can do all the work here
-    return (0,)  # TBD, this is a dummy return
+    for (c, n) in enumerate(sourceRoot.iter(), 1):
+        n.set('id', str(c))
+
+    query = xmlQueryToRegex(queryRoot)
+    results = root.findall(query)
+    solution = [len(results)]
+    for i in results:
+        solution += [i.get('id')]
+
+    return solution  # TBD, this is a dummy return
 
 # I'm considering adding a method to get the string version of the query, as in
 # foo(<Team><Cooly></Cooly></Team>) == "Team/Cooly"
