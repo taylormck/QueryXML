@@ -27,7 +27,17 @@ def xmlQueryToRegex(queryRoot):
     """
         Takes in a query root and returns the regex to search
     """
-    return ""
+    def helper(node, string) :
+        string += node.tag
+
+        for n in node :
+            string += "/"
+            string = helper(n, string)
+            string += "/.."
+
+        return string
+
+    return helper(queryRoot, ".//")
 
 def xmlRead (istream):
     """
