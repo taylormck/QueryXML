@@ -94,7 +94,7 @@ class TestXML (unittest.TestCase) :
         r = StringIO.StringIO(xml1)
         w = StringIO.StringIO()
         xmlSolve(r, w)
-        self.assert_(w.getvalue() == "2\n7\n7\n")
+        self.assert_(w.getvalue() == "2\n2\n7\n")
 
     def test_xmlSolve_whitespace (self) :
         r = StringIO.StringIO(xml_whitespace)
@@ -105,6 +105,7 @@ class TestXML (unittest.TestCase) :
     def test_xmlSolve_text (self) :
         r = StringIO.StringIO(xml_text)
         w = StringIO.StringIO()
+        print w.getvalue()
         self.assert_(w.getvalue() == "1\n2\n")
 
     # --------

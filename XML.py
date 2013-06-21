@@ -67,5 +67,7 @@ def xmlSolve (istream, ostream):
     """
         Reads in test cases from istream and prints the results to the output stream
     """
-    pass
-
+    root = et.fromstring(xmlRead(istream))
+    trees = root.findall("*")
+    solution = xmlEval(trees[0], trees[1])
+    xmlPrint(solution, ostream)
