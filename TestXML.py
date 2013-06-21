@@ -20,6 +20,7 @@ xml_whitespace = "<THU>\n <Team>  \n\n <Cooly>\t</Cooly>\n </Team>\n </THU>"\
         + "\n<Team><Cooly>\t </Cooly> </Team>"
 xml_text = "<THU>\n<Team>\n<Cooly>test text</Cooly>\n</Team>\n</THU>\n<Team>"\
         + "<Cooly>more test text</Cooly></Team>"
+xml_easy = "<Team></Team>"
 
 class TestXML (unittest.TestCase) :
 
@@ -100,8 +101,16 @@ class TestXML (unittest.TestCase) :
         w = StringIO.StringIO()
         self.assert_(w.getvalue() == "1\n2\n")
 
+    # --------
+    # xmlEval
+    # --------
+
     def test_xmlEval_1 (self) :
-    	self.assert_(False)
+        sourceRoot = et.fromstring(xml_easy)
+        queryRoot = et.fromstring("<Team></Team>")
+        result = xmlEval(sourceRoot, queryRoot)
+        print result
+        self.assert_(result == [1, "1"])
 
     # ----------------
     # xmlQueryToRegex

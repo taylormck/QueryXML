@@ -22,7 +22,9 @@ def xmlEval(sourceRoot, queryRoot):
         n.set('id', str(c))
 
     query = xmlQueryToRegex(queryRoot)
-    results = root.findall(query)
+    dummyRoot = et.Element("XML")
+    dummyRoot.insert(0, sourceRoot)
+    results = dummyRoot.findall(query)
     solution = [len(results)]
     for i in results:
         solution += [i.get('id')]
