@@ -22,6 +22,12 @@ xml_text = "<THU>\n<Team>\n<Cooly>test text</Cooly>\n</Team>\n</THU>\n<Team>"\
         + "<Cooly>more test text</Cooly></Team>"
 xml_easy = "<Team></Team>"
 
+xml_child_source = "<THU>\n<Team>\n<ACRush></ACRush>\n<Jelly></Jelly>\n<Cooly></Cooly>\n"\
+        + "</Team>\n<JiaJia>\n<Team>\n<Ahyangyi></Ahyangyi>\n<Dragon>"\
+        + "</Dragon>\n<Cooly><Amber></Amber></Cooly>\n</Team>\n</JiaJia>\n"\
+        + "</THU>"
+xml_child_query = "<Team><Cooly></Cooly></Team>"
+
 class TestXML (unittest.TestCase) :
 
     # -------
@@ -105,12 +111,35 @@ class TestXML (unittest.TestCase) :
     # xmlEval
     # --------
 
-    def test_xmlEval_1 (self) :
+    def test_xmlEval_easy (self) :
         sourceRoot = et.fromstring(xml_easy)
         queryRoot = et.fromstring("<Team></Team>")
         result = xmlEval(sourceRoot, queryRoot)
-        print result
-        self.assert_(result == [1, "1"])
+        self.assert_(result == [1, 1])
+
+    def test_xmlEval_sphere (self) :
+        sourceRoot = et.fromstring(xml_child_source)
+        queryRoot = et.fromstring(xml_child_query)
+        result = xmlEval(sourceRoot, queryRoot)
+        self.assert_(result == [2, 2, 7])
+
+    def test_xmlEval_siblings (self) :
+        sourceRoot = et.fromstring(xml_child_source)
+        queryRoot = et.fromstring("<Team><Cooly></Cooly><Dragon></Dragon></Team>")
+        result = xmlEval(sourceRoot, queryRoot)
+        self.assert_(result == [1, 7])
+
+    def test_xmlEval_grandchildren (self) :
+        sourceRoot = et.fromstring(xml_child_source)
+        queryRoot = et.fromstring("<Team><Cooly><Amber></Amber></Cooly></Team>")
+        result = xmlEval(sourceRoot, queryRoot)
+        self.assert_(result == [1, 7])
+
+    def test_xmlEval_mixed (self) :
+        sourceRoot = et.fromstring(xml_child_source)
+        queryRoot = et.fromstring("<Team><Cooly><Amber></Amber></Cooly><Dragon></Dragon></Team>")
+        result = xmlEval(sourceRoot, queryRoot)
+        self.assert_(result == [1, 7])
 
     # ----------------
     # xmlQueryToRegex

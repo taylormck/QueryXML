@@ -27,7 +27,7 @@ def xmlEval(sourceRoot, queryRoot):
     results = dummyRoot.findall(query)
     solution = [len(results)]
     for i in results:
-        solution += [i.get('id')]
+        solution += [int(i.get('id'))]
 
     return solution  # TBD, this is a dummy return
 
