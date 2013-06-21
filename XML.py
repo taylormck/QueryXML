@@ -1,18 +1,16 @@
 #!/usr/bin/env python
 """
-    Search in XML
-    
-    @author: Taylor McKinney, Eduardo Saenz
+Search in XML    
+@author: Taylor McKinney, Eduardo Saenz
 """
 
 import xml.etree.ElementTree as et
 
 def xmlEval(sourceRoot, queryRoot):
     """
-        Searches for the query in the XML source
-        Returns the number of matches and integer enumeration of each occurrence
-        
-        @return: (n, k1, ... kn) where n is the number of matches and ki is the ith match
+    Searches for the query in the XML source
+    Returns the number of matches and integer enumeration of each occurrence
+    @return: (n, k1, ... kn) where n is the number of matches and ki is the ith match
     """
     # for (c, n) in enumerate(sourceTree.iter(), 1):
     #     this will give you each node with their correct number
@@ -35,7 +33,9 @@ def xmlEval(sourceRoot, queryRoot):
 # foo(<Team><Cooly></Cooly></Team>) == "Team/Cooly"
 def xmlQueryToRegex(queryRoot):
     """
-        Takes in a query root and returns the regex to search
+    Takes in a query root and returns the regex to search
+    @param queryRoot: Element representing root of query
+    @return valid query string
     """
     def helper(node, string) :
         string += node.tag
@@ -51,21 +51,24 @@ def xmlQueryToRegex(queryRoot):
 
 def xmlRead (istream):
     """
+    @param istream: an input stream
+    @return a valid XML string
     """
     return "<XML>" + istream.read() + "</XML>"
 
 def xmlPrint (solution, ostream):
     """
-        Prints out the elements of a tuple without the formatting or extra symbols
-        
-        @param solution: A tuple
+    Prints out the elements of a tuple without the formatting or extra symbols
+    @param solution: A tuple
     """
     for n in solution:
         print >> ostream, n
 
 def xmlSolve (istream, ostream):
     """
-        Reads in test cases from istream and prints the results to the output stream
+    Reads in test cases from istream and prints the results to the output stream
+    @param istream: an input stream
+    @param ostream: an output stream
     """
     root = et.fromstring(xmlRead(istream))
     trees = root.findall("*")
