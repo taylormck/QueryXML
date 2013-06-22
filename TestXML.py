@@ -169,6 +169,12 @@ class TestXML (unittest.TestCase) :
         result = xmlQueryToRegex(queryroot)
         self.assert_(result == ".//T/C/D/../../J/..")
 
+    def test_xmlQueryToRegex_text (self) :
+        query = "<T> <C> test </C> more text <D> even more text </D> </T>"
+        queryroot = et.fromstring(query)
+        result = xmlQueryToRegex(queryroot)
+        self.assert_(result == ".//T/C/../D/..")
+
 # ----
 # main
 # ----
