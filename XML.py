@@ -72,5 +72,7 @@ def xmlSolve (istream, ostream):
     """
     root = et.fromstring(xmlRead(istream))
     trees = root.findall("*")
-    solution = xmlEval(trees[0], trees[1])
-    xmlPrint(solution, ostream)
+    for i in xrange(0, len(trees), 2):
+        solution = xmlEval(trees[i], trees[i + 1])
+        xmlPrint(solution, ostream)
+        print ""
