@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-    Run XML.py
+Run XML.py
 """
 # --- imports ---
 import sys
