@@ -63,6 +63,7 @@ def xmlPrint (solution, ostream):
     """
     for n in solution:
         print >> ostream, n
+    print >> ostream, ""
 
 def xmlSolve (istream, ostream):
     """
@@ -75,4 +76,3 @@ def xmlSolve (istream, ostream):
     for i in xrange(0, len(trees), 2):
         solution = xmlEval(trees[i], trees[i + 1])
         xmlPrint(solution, ostream)
-        print ""

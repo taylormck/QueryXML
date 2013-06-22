@@ -66,25 +66,25 @@ class TestXML (unittest.TestCase) :
         w = StringIO.StringIO()
         ans = () # parens or empty tuple?
         xmlPrint(ans, w)
-        self.assert_(w.getvalue() == "")
+        self.assert_(w.getvalue() == "\n")
 
     def test_xmlPrint_tuple_1 (self) :
         w = StringIO.StringIO()
         ans = (1, 4)
         xmlPrint(ans, w)
-        self.assert_(w.getvalue() == "1\n4\n")
+        self.assert_(w.getvalue() == "1\n4\n\n")
 
     def test_xmlPrint_tuple_2 (self) :
         w = StringIO.StringIO()
         ans = (2, 2, 7)
         xmlPrint(ans, w)
-        self.assert_(w.getvalue() == "2\n2\n7\n")
+        self.assert_(w.getvalue() == "2\n2\n7\n\n")
 
     def test_xmlPrint_tuple_trash (self) :
         w = StringIO.StringIO()
         ans = (2, "trash", [1])
         xmlPrint(ans, w)
-        self.assert_(w.getvalue() == "2\ntrash\n[1]\n")
+        self.assert_(w.getvalue() == "2\ntrash\n[1]\n\n")
 
     # --------
     # xmlSolve
@@ -94,19 +94,19 @@ class TestXML (unittest.TestCase) :
         r = StringIO.StringIO(xml1)
         w = StringIO.StringIO()
         xmlSolve(r, w)
-        self.assert_(w.getvalue() == "2\n2\n7\n")
+        self.assert_(w.getvalue() == "2\n2\n7\n\n")
 
     def test_xmlSolve_whitespace (self) :
         r = StringIO.StringIO(xml_whitespace)
         w = StringIO.StringIO()
         xmlSolve(r, w)
-        self.assert_(w.getvalue() == "1\n2\n")
+        self.assert_(w.getvalue() == "1\n2\n\n")
 
     def test_xmlSolve_text (self) :
         r = StringIO.StringIO(xml_text)
         w = StringIO.StringIO()
         xmlSolve(r, w)
-        self.assert_(w.getvalue() == "1\n2\n")
+        self.assert_(w.getvalue() == "1\n2\n\n")
 
     # --------
     # xmlEval
